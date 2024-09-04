@@ -2,10 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const api = axios.create({
-  baseURL:
-    import.meta.env.VITE_API_URL == undefined
-      ? "https://prueba-mp-backend-834460423898.us-central1.run.app/api/v1/"
-      : import.meta.env.VITE_API_URL,
+  baseURL: "https://prueba-mp-backend-834460423898.us-central1.run.app/api/v1/",
 });
 
 api.interceptors.request.use(
