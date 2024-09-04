@@ -3,20 +3,19 @@ FROM node:20 as vite-build
 
 WORKDIR /app
 
-# Copy package.json and package-lock.json (or yarn.lock) files
-COPY package*.json yarn.lock ./
+# Copiar los archivos de configuración de dependencias
+COPY package.json package-lock.json ./ 
 
+# Instalar dependencias
+RUN npm install  # Cambiar yarn por npm
 
-# Install dependencies
-RUN yarn
-
-# Copy the rest of your app's source code
+# Copiar el resto del código fuente de la aplicación
 COPY . .
 
-# Build your app
-RUN yarn build
+# Construir la aplicación
+RUN npm run build  # Cambiar yarn build por npm run build
 
-# Step 2: Serve the app using Nginx
+# Step 2: Servir la app usando Nginx
 FROM nginx:alpine
 COPY nginx.conf /etc/nginx/conf.d/configfile.template
 
